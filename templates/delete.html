@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='my-5 py-5 row container mx-auto text-center'>
+    <h3 class=''>are you sure you want this item : <br> <u><i>{{item}}</i><u></h3> 
+        <br>
+    <form method='POST' action=''>
+        {% csrf_token %}
+        
+        <button class='btn btn-danger' type='submit'>Delete</button>
+        <button onclick="window.location.href='{% url "home" %}'" class='btn btn-primary' type='button'>Cancel</button>
+    </form>
+</div>
+
+
+{% endblock content %}
+

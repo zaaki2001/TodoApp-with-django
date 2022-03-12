@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<div class='container mx-auto'>
+    <div class=' py-3 row '>
+    
+        <div class='col-12 text-center'>
+            <h3 >Update Item : <br> <u><i>{{item}}</i><u></h3>
+        </div>
+        <div class='col-12'>
+            <form method='POST' action=''>
+                {% csrf_token %}
+                {{form}}
+                <div class='row'>
+                    <div class='col-sm-2'>
+                        <button class='btn btn-danger' type='submit'>Update</button>
+                    </div>
+                    <div class='col-sm-6'>
+                        <button onclick="window.location.href='{% url "home" %}'" class='btn btn-primary' type='button'>Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> 
+</div>
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <title>ToDo App</title>
+
+    <style>
+        body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div > div > div > div:nth-child(n) > a > i{
+            color: #000;
+            font-size: 28px;
+            transition:.3s;
+        }
+        body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div > div > div > div:nth-child(n) > a > i:hover{
+            color: #c9283e
+        }
+        body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div:hover{
+            box-shadow: 3px 3px 10px #5e5d5a;
+        }
+    </style>
+  </head>
+  <body id='Body'>
+      {% include 'parts/navbar.html' %}
+
+      {% block content %}
+      
+      
+      {% endblock content %}
+
+    <script>
+      function Myfunction(){
+        var element = document.getElementById("Body");
+        var element2 = document.getElementById("Modal");
+        element.classList.toggle("bg-dark");
+        element.classList.toggle("text-white");
+        element2.classList.toggle("bg-dark");
+        element2.classList.toggle("text-white");
+        
+
+      }
+    </script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}" ></script>
+
+  </body>
+</html>

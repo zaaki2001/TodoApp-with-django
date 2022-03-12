@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+        <style>
+            body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div > div > div > div:nth-child(n) > a {
+                color: #000;
+                font-size: 18px;
+                transition:.3s;
+            }
+            body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div > div > div > div:nth-child(n) > a > i:hover{
+                color: #c9283e
+            }
+            body > div.container > div > div.col-lg-4.col-md-4.col-12.mt-3.mb-3 > div:hover{
+                box-shadow: 3px 3px 10px #5e5d5a;
+            }
+        </style>
+        <div class="mb-2 pt-3 text-white text-center">
+            <button data-bs-toggle="modal" data-bs-target="#itemIdModal" class="btn btn-info">Add Item</button>
+        </div>
+        <div class="modal fade" id="itemIdModal" tabindex="-1" aria-labelledby="itemModal" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content " id='Modal'>
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="itemModal">Add an Item</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method='POST' action='/'>
+                            {% csrf_token %}
+                            {{forms.as_p}}
+                            <button type="submit" name='AddItem' class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                    
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class='container'>
+            <div class='row pt-3 pb-4'>
+                {% for todo in todos %}
+                    <div class='col-lg-4 col-md-4 col-12 mt-3 mb-3'>
+                        <div class="card mx-auto text-{{todo.txt_color}} bg-{{todo.bg_color}}" style="width: 20rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{todo.title}} </h5>
+                                <h6 class="card-subtitle mb-2">@{{todo.topic}} </h6>
+                                <p class="card-text">
+                                    {{todo.description}}
+                                </p>
+                                <h6 class="card-subtitle mb-2 ">last update : {{todo.date_updated}}</h6>
+                                <div class='row '>
+                                    <div class='col-6 text-center'>
+                                        <a href="{% url 'edit' todo.id %}" ><i class="las la-pen text-lg"></i>Edit</a>
+                                    </div>
+                                    <div class='col-6 text-center' >
+                                        <a href="{% url 'delete' todo.id %}"  ><i class="las la-trash"></i>Delete</i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+
+{% endblock content %}     
+    
